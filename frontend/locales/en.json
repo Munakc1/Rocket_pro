@@ -1,0 +1,6 @@
+{
+  "hello": "Hello, {name}!",
+  "tagline": "This text switches language instantly — no reload.",
+  "nav.home": "Home",
+  "nav.about": "About"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "rocket_pro",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "types",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace @rocket_pro/backend",
+    "dev:web": "npm run dev --workspace @rocket_pro/frontend",
+    "build": "npm run build --workspace @rocket_pro/backend && npm run build --workspace @rocket_pro/frontend",
+    "start": "concurrently -k -n api,web -c blue,magenta \"npm:start:api\" \"npm:start:web\"",
+    "start:api": "npm run start --workspace @rocket_pro/backend",
+    "start:web": "npm run start --workspace @rocket_pro/frontend",
+    "typecheck": "npm run typecheck --workspace @rocket_pro/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "lucide-react": "^1.47.0"
+  }
+}
