@@ -11,7 +11,7 @@ import {
 
 import MarketTicker from "@/components/MarketTicker";
 
-// @ts-expect-error Global CSS is processed by Next.js and does not need a TypeScript declaration.
+// Global CSS is processed by Next.js and does not need a TypeScript declaration.
 import "./globals.css";
 
 const inter = Inter({

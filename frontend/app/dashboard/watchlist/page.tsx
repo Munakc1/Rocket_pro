@@ -25,10 +25,6 @@ type SortOption =
   | "volume"
   | "turnover";
 
-type Props = {
-  initialStocks: WatchlistStock[];
-};
-
 const availableStocks: WatchlistStock[] = [
   {
     symbol: "NABIL",
@@ -151,8 +147,8 @@ function formatVolume(value: number) {
   return formatNumber(value);
 }
 
-export default function WatchlistPage({ initialStocks }: Props) {
-  const [stocks, setStocks] = useState<WatchlistStock[]>(initialStocks);
+export default function WatchlistPage() {
+  const [stocks, setStocks] = useState<WatchlistStock[]>(availableStocks);
   const [search, setSearch] = useState("");
   const [sector, setSector] = useState("All Sectors");
   const [sortBy, setSortBy] = useState<SortOption>("default");

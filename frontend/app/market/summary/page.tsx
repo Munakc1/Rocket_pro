@@ -121,7 +121,7 @@ export type MarketSummaryProps = {
    DEFAULT EMPTY DATA
 ========================================================= */
 
-export const DEFAULT_MARKET_SUMMARY: MarketSummaryData = {
+const DEFAULT_MARKET_SUMMARY: MarketSummaryData = {
   marketStatus: "closed",
 
   lastUpdated: undefined,
@@ -1165,20 +1165,9 @@ function MarketSummaryError({ onRetry }: { onRetry?: () => void }) {
    MAIN MARKET SUMMARY
 ========================================================= */
 
-export default function MarketSummary({
-  data = DEFAULT_MARKET_SUMMARY,
-  isLoading = false,
-  isError = false,
-  onRetry,
-  className = "",
-}: MarketSummaryProps) {
-  if (isLoading) {
-    return <MarketSummarySkeleton />;
-  }
-
-  if (isError) {
-    return <MarketSummaryError onRetry={onRetry} />;
-  }
+export default function MarketSummary() {
+  const data = DEFAULT_MARKET_SUMMARY;
+  const className = "";
 
   return (
     <main className={`min-h-screen bg-app py-10 sm:py-12 ${className}`}>

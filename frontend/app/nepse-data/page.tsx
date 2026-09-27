@@ -138,11 +138,9 @@ function StatCard({ stat }: { stat: Stat }) {
   );
 }
 
-export default function MarketAtGlance({
-  stats = defaultStats,
-}: {
-  stats?: Stat[];
-}) {
+export default function MarketAtGlance() {
+  const stats = defaultStats;
+
   return (
     <section
       aria-labelledby="market-at-a-glance-heading"
