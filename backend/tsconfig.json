@@ -17,8 +17,8 @@
     "types": [
       "node"
     ],
-    "baseUrl": ".",
     "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
     "paths": {
       "@rocket_pro/types": [
         "../types/index.d.ts"

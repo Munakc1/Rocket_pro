@@ -1,8 +1,17 @@
 import mongoose from "mongoose";
+import { config } from "./config.js";
 
-// how this works: opens the Mongoose connection. Call once at boot.
-export async function connectDb(uri: string): Promise<void> {
-  mongoose.set("strictQuery", true);
-  await mongoose.connect(uri);
-  console.log("✔ MongoDB connected");
-}
+export const connectDB = async (): Promise<void> => {
+  try {
+    if (!config.mongoUri) {
+      throw new Error("MONGODB_URI is not defined in .env");
+    }
+
+    await mongoose.connect(config.mongoUri);
+
+    console.log("MongoDB connected successfully.");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error);
+    throw error;
+  }
+};
