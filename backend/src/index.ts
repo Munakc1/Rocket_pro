@@ -28,6 +28,16 @@ app.get("/", (_req, res) => {
   });
 });
 
+// Health check used by Render to verify the service is live
+app.get("/api/health", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    status: "ok",
+    service: "rocket-pro-api",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Authentication routes
 app.use("/api/auth", authRoutes);
 
@@ -42,11 +52,21 @@ const startServer = async (): Promise<void> => {
   try {
     await connectDB();
 
-    app.listen(config.port, () => {
-      console.log(
-        `Rocket Pro backend running on http://localhost:${config.port}`
-      );
+    const port = config.port;
+
+    // Bind to 0.0.0.0 so Render's proxy can reach the process, and use the
+    // PORT Render injects (config.port reads process.env.PORT).
+    const server = app.listen(port, "0.0.0.0", () => {
+      console.log(`Rocket Pro backend listening on port ${port}`);
     });
+
+    const shutdown = (signal: string) => {
+      console.log(`${signal} received, closing server...`);
+      server.close(() => process.exit(0));
+    };
+
+    process.on("SIGTERM", () => shutdown("SIGTERM"));
+    process.on("SIGINT", () => shutdown("SIGINT"));
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
