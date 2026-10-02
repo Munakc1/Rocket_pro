@@ -92,6 +92,11 @@ const marketNavigation: MarketItem[] = [
     icon: Activity,
   },
   {
+    label: "Market Ticker",
+    href: "/market/ticker",
+    icon: LineChart,
+  },
+  {
     label: "Today's Share Price",
     href: "/market/today-share-price",
     icon: DollarSign,
@@ -99,7 +104,7 @@ const marketNavigation: MarketItem[] = [
   {
     label: "Live Market",
     href: "/market/live",
-    icon: LineChart,
+    icon: Activity,
   },
   {
     label: "Market Calendar",
@@ -129,8 +134,11 @@ const accountNavigation: NavigationItem[] = [
    STORAGE KEYS
 ============================================================ */
 
-const SIDEBAR_STORAGE_KEY = "rocket-pro-dashboard-sidebar";
-const MARKET_STORAGE_KEY = "rocket-pro-market-navigation";
+const SIDEBAR_STORAGE_KEY =
+  "rocket-pro-dashboard-sidebar";
+
+const MARKET_STORAGE_KEY =
+  "rocket-pro-market-navigation";
 
 /* ============================================================
    COMPONENT
@@ -141,7 +149,7 @@ export default function DashboardSidebar() {
   const router = useRouter();
 
   /* ==========================================================
-     SIDEBAR STATE
+     STATE
   ========================================================== */
 
   const [collapsed, setCollapsed] = useState(false);
@@ -150,23 +158,25 @@ export default function DashboardSidebar() {
   const [mounted, setMounted] = useState(false);
 
   /* ==========================================================
-     INITIALIZE FROM LOCAL STORAGE
+     INITIALIZE LOCAL STORAGE
   ========================================================== */
 
   useEffect(() => {
     setMounted(true);
 
-    const savedSidebarState = window.localStorage.getItem(
-      SIDEBAR_STORAGE_KEY
-    );
+    const savedSidebarState =
+      window.localStorage.getItem(
+        SIDEBAR_STORAGE_KEY
+      );
 
     if (savedSidebarState === "collapsed") {
       setCollapsed(true);
     }
 
-    const savedMarketState = window.localStorage.getItem(
-      MARKET_STORAGE_KEY
-    );
+    const savedMarketState =
+      window.localStorage.getItem(
+        MARKET_STORAGE_KEY
+      );
 
     if (savedMarketState === "closed") {
       setMarketOpen(false);
@@ -176,7 +186,7 @@ export default function DashboardSidebar() {
   }, []);
 
   /* ==========================================================
-     AUTO OPEN NEPSE DATA WHEN INSIDE /market
+     AUTO OPEN MARKET NAVIGATION
   ========================================================== */
 
   useEffect(() => {
@@ -191,7 +201,7 @@ export default function DashboardSidebar() {
   }, [pathname]);
 
   /* ==========================================================
-     TOGGLE SIDEBAR
+     SIDEBAR TOGGLE
   ========================================================== */
 
   function toggleSidebar() {
@@ -206,7 +216,7 @@ export default function DashboardSidebar() {
   }
 
   /* ==========================================================
-     TOGGLE MARKET NAVIGATION
+     MARKET TOGGLE
   ========================================================== */
 
   function toggleMarketNavigation() {
@@ -239,7 +249,8 @@ export default function DashboardSidebar() {
      MARKET ACTIVE
   ========================================================== */
 
-  const marketActive = pathname.startsWith("/market");
+  const marketActive =
+    pathname.startsWith("/market");
 
   /* ==========================================================
      SIGN OUT
@@ -261,12 +272,9 @@ export default function DashboardSidebar() {
   ========================================================== */
 
   useEffect(() => {
-    function handleKeyboard(event: KeyboardEvent) {
-      /*
-        Ctrl + B
-        Toggle sidebar.
-      */
-
+    function handleKeyboard(
+      event: KeyboardEvent
+    ) {
       if (
         event.ctrlKey &&
         event.key.toLowerCase() === "b"
@@ -274,10 +282,6 @@ export default function DashboardSidebar() {
         event.preventDefault();
         toggleSidebar();
       }
-
-      /*
-        Escape closes sign-out dialog.
-      */
 
       if (event.key === "Escape") {
         setSignOutOpen(false);
@@ -303,7 +307,21 @@ export default function DashboardSidebar() {
 
   if (!mounted) {
     return (
-      <aside className="hidden h-screen w-[252px] shrink-0 border-r border-[#d5d5d5] bg-[#fbfbfb] lg:sticky lg:top-0 lg:flex lg:flex-col" />
+      <aside
+        className="
+          hidden
+          h-screen
+          w-[252px]
+          shrink-0
+          border-r-[0.5px]
+          border-card
+          bg-panel
+          lg:sticky
+          lg:top-0
+          lg:flex
+          lg:flex-col
+        "
+      />
     );
   }
 
@@ -316,8 +334,8 @@ export default function DashboardSidebar() {
       <aside
         className={[
           "hidden h-screen shrink-0",
-          "border-r border-[#d5d5d5]",
-          "bg-[#fbfbfb]",
+          "border-r-[0.5px] border-card",
+          "bg-panel",
           "lg:sticky lg:top-0 lg:flex lg:flex-col",
           "transition-[width] duration-300 ease-in-out",
           collapsed
@@ -331,45 +349,65 @@ export default function DashboardSidebar() {
 
         <div
           className={[
-            "relative flex h-[82px] shrink-0 items-center",
-            "border-b border-[#d5d5d5]",
+            "relative flex h-[82px] shrink-0",
+            "items-center",
+            "border-b-[0.5px] border-card",
+            "bg-panel",
             collapsed
               ? "justify-center px-3"
-              : "px-6",
+              : "px-5",
           ].join(" ")}
         >
+          {/* =================================================
+              LOGO
+              Keeps user on the current page.
+          ================================================= */}
+
           <Link
-            href="/"
-            aria-label="Rocket Pro home"
-            className="
-              flex
-              shrink-0
-              items-center
-              rounded-md
-              outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#0aa852]
-              focus-visible:ring-offset-2
-            "
+            href={pathname}
+            aria-label="Rocket Pro dashboard"
+            className={[
+              "group flex min-w-0 items-center",
+              "rounded-xl",
+              "outline-none",
+              "transition-all duration-200",
+              "focus-visible:ring-2",
+              "focus-visible:ring-primary",
+              "focus-visible:ring-offset-2",
+              collapsed
+                ? "justify-center"
+                : "w-full",
+            ].join(" ")}
           >
-            <Image
-              src="/images/logo.png"
-              alt="Rocket Pro"
-              width={200}
-              height={56}
-              priority
+            <div
               className={[
-                "w-auto object-contain",
+                "flex items-center",
                 "transition-all duration-300",
                 collapsed
-                  ? "h-9 max-w-[54px]"
-                  : "h-10 sm:h-11",
+                  ? "justify-center"
+                  : "w-full",
               ].join(" ")}
-            />
+            >
+              <Image
+                src="/images/logo.png"
+                alt="Rocket Pro"
+                width={200}
+                height={56}
+                priority
+                className={[
+                  "w-auto object-contain",
+                  "transition-all duration-300",
+                  "group-hover:scale-[1.02]",
+                  collapsed
+                    ? "h-9 max-w-[54px]"
+                    : "h-10 sm:h-11",
+                ].join(" ")}
+              />
+            </div>
           </Link>
 
           {/* ==================================================
-              SIDEBAR COLLAPSE / EXPAND
+              SIDEBAR COLLAPSE BUTTON
           ================================================== */}
 
           <button
@@ -398,19 +436,19 @@ export default function DashboardSidebar() {
               items-center
               justify-center
               rounded-full
-              border
-              border-[#d5d5d5]
-              bg-white
-              text-[#656565]
+              border-[0.5px]
+              border-card
+              bg-surface
+              text-muted
               shadow-[0_2px_8px_rgba(0,0,0,0.08)]
               transition-all
               duration-200
-              hover:border-[#01c45a]
-              hover:bg-[#f1f9f4]
-              hover:text-[#0aa852]
+              hover:border-primary-border
+              hover:bg-news
+              hover:text-primary
               focus:outline-none
               focus-visible:ring-2
-              focus-visible:ring-[#0aa852]
+              focus-visible:ring-primary
               focus-visible:ring-offset-1
             "
           >
@@ -431,15 +469,32 @@ export default function DashboardSidebar() {
             MAIN SCROLLABLE AREA
         ================================================== */}
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-3 py-6">
-
+        <div
+          className="
+            min-h-0
+            flex-1
+            overflow-y-auto
+            px-3
+            py-6
+          "
+        >
           {/* =================================================
               DASHBOARD
           ================================================= */}
 
           <section>
             {!collapsed && (
-              <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#686868]">
+              <p
+                className="
+                  mb-2
+                  px-3
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.16em]
+                  text-faint
+                "
+              >
                 Dashboard
               </p>
             )}
@@ -450,7 +505,8 @@ export default function DashboardSidebar() {
             >
               {mainNavigation.map((item) => {
                 const Icon = item.icon;
-                const active = isActive(item.href);
+                const active =
+                  isActive(item.href);
 
                 return (
                   <SidebarLink
@@ -466,18 +522,28 @@ export default function DashboardSidebar() {
           </section>
 
           {/* =================================================
-              NEPSE DATA
+              MARKET
           ================================================= */}
 
           <section className="mt-7">
             {!collapsed && (
-              <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#686868]">
+              <p
+                className="
+                  mb-2
+                  px-3
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.16em]
+                  text-faint
+                "
+              >
                 Market
               </p>
             )}
 
             {/* ===============================================
-                COLLAPSED MARKET BUTTON
+                COLLAPSED MARKET
             =============================================== */}
 
             {collapsed ? (
@@ -485,23 +551,29 @@ export default function DashboardSidebar() {
                 <button
                   type="button"
                   onClick={() =>
-                    setMarketOpen(!marketOpen)
+                    setMarketOpen(
+                      !marketOpen
+                    )
                   }
                   title="NEPSE Data"
                   aria-label="Open NEPSE Data"
                   aria-expanded={marketOpen}
                   className={[
-                    "flex h-11 w-full items-center justify-center rounded-xl",
-                    "transition",
+                    "flex h-11 w-full",
+                    "items-center justify-center",
+                    "rounded-xl",
+                    "transition-all duration-200",
                     marketActive
-                      ? "bg-[#dcffec] text-[#0aa852]"
-                      : "text-[#474747] hover:bg-[#f1f9f4] hover:text-black",
+                      ? "bg-badge text-primary"
+                      : "text-body hover:bg-news hover:text-fg",
                   ].join(" ")}
                 >
                   <Building2
                     size={18}
                     strokeWidth={
-                      marketActive ? 2.1 : 1.8
+                      marketActive
+                        ? 2.1
+                        : 1.8
                     }
                   />
                 </button>
@@ -513,7 +585,7 @@ export default function DashboardSidebar() {
             ) : (
               <>
                 {/* =========================================
-                    EXPANDED MARKET BUTTON
+                    MARKET BUTTON
                 ========================================= */}
 
                 <button
@@ -523,19 +595,23 @@ export default function DashboardSidebar() {
                   }
                   aria-expanded={marketOpen}
                   className={[
-                    "flex h-11 w-full items-center justify-between rounded-xl px-3",
+                    "flex h-11 w-full",
+                    "items-center justify-between",
+                    "rounded-xl px-3",
                     "text-[13px] font-medium",
-                    "transition",
+                    "transition-all duration-200",
                     marketActive
-                      ? "bg-[#dcffec] text-[#0aa852]"
-                      : "text-[#474747] hover:bg-[#f1f9f4] hover:text-black",
+                      ? "bg-badge text-primary"
+                      : "text-body hover:bg-news hover:text-fg",
                   ].join(" ")}
                 >
                   <span className="flex items-center gap-3">
                     <Building2
                       size={18}
                       strokeWidth={
-                        marketActive ? 2.1 : 1.8
+                        marketActive
+                          ? 2.1
+                          : 1.8
                       }
                     />
 
@@ -545,7 +621,7 @@ export default function DashboardSidebar() {
                   <ChevronDown
                     size={15}
                     className={[
-                      "text-[#656565]",
+                      "text-muted",
                       "transition-transform duration-200",
                       marketOpen
                         ? "rotate-0"
@@ -560,7 +636,8 @@ export default function DashboardSidebar() {
 
                 <div
                   className={[
-                    "grid transition-[grid-template-rows] duration-200",
+                    "grid transition-[grid-template-rows]",
+                    "duration-200",
                     marketOpen
                       ? "grid-rows-[1fr]"
                       : "grid-rows-[0fr]",
@@ -572,17 +649,21 @@ export default function DashboardSidebar() {
                         ml-4
                         mt-1
                         space-y-1
-                        border-l
-                        border-[#d5d5d5]
+                        border-l-[0.5px]
+                        border-card
                         pl-2
                       "
                       aria-label="NEPSE navigation"
                     >
                       {marketNavigation.map(
                         (item) => {
-                          const Icon = item.icon;
+                          const Icon =
+                            item.icon;
+
                           const active =
-                            isActive(item.href);
+                            isActive(
+                              item.href
+                            );
 
                           return (
                             <Link
@@ -594,12 +675,13 @@ export default function DashboardSidebar() {
                                   : undefined
                               }
                               className={[
-                                "flex h-10 items-center gap-2.5 rounded-lg px-3",
+                                "flex h-10 items-center",
+                                "gap-2.5 rounded-lg px-3",
                                 "text-[12px] font-medium",
-                                "transition",
+                                "transition-all duration-200",
                                 active
-                                  ? "bg-[#dcffec] text-[#0aa852]"
-                                  : "text-[#656565] hover:bg-[#f1f9f4] hover:text-black",
+                                  ? "bg-badge text-primary"
+                                  : "text-muted hover:bg-news hover:text-fg",
                               ].join(" ")}
                             >
                               <Icon
@@ -631,7 +713,17 @@ export default function DashboardSidebar() {
 
           <section className="mt-7">
             {!collapsed && (
-              <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#686868]">
+              <p
+                className="
+                  mb-2
+                  px-3
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.16em]
+                  text-faint
+                "
+              >
                 Account
               </p>
             )}
@@ -642,7 +734,8 @@ export default function DashboardSidebar() {
             >
               {accountNavigation.map((item) => {
                 const Icon = item.icon;
-                const active = isActive(item.href);
+                const active =
+                  isActive(item.href);
 
                 return (
                   <SidebarLink
@@ -662,40 +755,74 @@ export default function DashboardSidebar() {
             BOTTOM ACCOUNT
         ================================================== */}
 
-        <div className="shrink-0 border-t border-[#d5d5d5] p-3">
-
-          {/* ==================================================
-              USER
-          ================================================== */}
+        <div
+          className="
+            shrink-0
+            border-t-[0.5px]
+            border-card
+            p-3
+          "
+        >
+          {/* USER */}
 
           <div
             className={[
-              "mb-2 flex items-center rounded-xl bg-[#f1f9f4] py-3",
+              "mb-2 flex items-center",
+              "rounded-xl",
+              "bg-news",
+              "py-3",
+              "transition-colors duration-200",
               collapsed
                 ? "justify-center px-2"
                 : "gap-3 px-3",
             ].join(" ")}
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#dcffec] text-xs font-bold text-[#0aa852]">
+            <div
+              className="
+                flex
+                h-9
+                w-9
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-badge
+                text-xs
+                font-bold
+                text-primary
+              "
+            >
               MK
             </div>
 
             {!collapsed && (
               <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-black">
+                <p
+                  className="
+                    truncate
+                    text-xs
+                    font-semibold
+                    text-heading
+                  "
+                >
                   Muna K.C.
                 </p>
 
-                <p className="mt-0.5 truncate text-[10px] text-[#656565]">
+                <p
+                  className="
+                    mt-0.5
+                    truncate
+                    text-[10px]
+                    text-muted
+                  "
+                >
                   Free account
                 </p>
               </div>
             )}
           </div>
 
-          {/* ==================================================
-              SIGN OUT
-          ================================================== */}
+          {/* SIGN OUT */}
 
           <div className="group relative">
             <button
@@ -709,12 +836,13 @@ export default function DashboardSidebar() {
                   : undefined
               }
               className={[
-                "flex h-10 w-full items-center rounded-xl",
+                "flex h-10 w-full",
+                "items-center rounded-xl",
                 "text-[13px] font-medium",
-                "text-[#656565]",
-                "transition",
+                "text-muted",
+                "transition-all duration-200",
                 "hover:bg-[#fff1f1]",
-                "hover:text-[#e31b1b]",
+                "hover:text-danger",
                 collapsed
                   ? "justify-center px-3"
                   : "gap-3 px-3",
@@ -740,7 +868,7 @@ export default function DashboardSidebar() {
       </aside>
 
       {/* ======================================================
-          SIGN OUT CONFIRMATION
+          SIGN OUT MODAL
       ====================================================== */}
 
       {signOutOpen && (
@@ -765,25 +893,48 @@ export default function DashboardSidebar() {
               w-full
               max-w-[380px]
               rounded-2xl
-              border
-              border-[#d5d5d5]
-              bg-white
+              border-[0.5px]
+              border-card
+              bg-surface
               p-5
               shadow-[0_20px_60px_rgba(0,0,0,0.15)]
             "
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff1f1] text-[#e31b1b]">
+            <div
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                bg-[#fff1f1]
+                text-danger
+              "
+            >
               <LogOut size={19} />
             </div>
 
             <h2
               id="signout-title"
-              className="mt-4 text-sm font-semibold text-black"
+              className="
+                mt-4
+                text-sm
+                font-semibold
+                text-heading
+              "
             >
               Sign out of Rocket Pro?
             </h2>
 
-            <p className="mt-2 text-xs leading-5 text-[#656565]">
+            <p
+              className="
+                mt-2
+                text-xs
+                leading-5
+                text-muted
+              "
+            >
               You will need to sign in again
               to access your dashboard.
             </p>
@@ -797,16 +948,17 @@ export default function DashboardSidebar() {
                 className="
                   flex-1
                   rounded-xl
-                  border
-                  border-[#d5d5d5]
-                  bg-white
+                  border-[0.5px]
+                  border-card
+                  bg-surface
                   px-4
                   py-2.5
                   text-xs
                   font-semibold
-                  text-[#474747]
-                  transition
-                  hover:bg-[#f1f9f4]
+                  text-body
+                  transition-all
+                  duration-200
+                  hover:bg-news
                 "
               >
                 Cancel
@@ -818,14 +970,15 @@ export default function DashboardSidebar() {
                 className="
                   flex-1
                   rounded-xl
-                  bg-[#e31b1b]
+                  bg-danger
                   px-4
                   py-2.5
                   text-xs
                   font-semibold
                   text-white
-                  transition
-                  hover:bg-[#c91919]
+                  transition-all
+                  duration-200
+                  hover:brightness-95
                 "
               >
                 Sign out
@@ -866,15 +1019,16 @@ function SidebarLink({
             : undefined
         }
         className={[
-          "relative flex h-11 items-center rounded-xl",
+          "relative flex h-11 items-center",
+          "rounded-xl",
           "text-[13px] font-medium",
           "transition-all duration-200",
           collapsed
             ? "justify-center px-3"
             : "gap-3 px-3",
           active
-            ? "bg-[#dcffec] text-[#0aa852]"
-            : "text-[#474747] hover:bg-[#f1f9f4] hover:text-black",
+            ? "bg-badge text-primary"
+            : "text-body hover:bg-news hover:text-fg",
         ].join(" ")}
       >
         {active && (
@@ -887,7 +1041,7 @@ function SidebarLink({
               w-[3px]
               -translate-y-1/2
               rounded-r-full
-              bg-[#0aa852]
+              bg-primary
             "
           />
         )}

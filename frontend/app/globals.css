@@ -13,22 +13,22 @@ TAILWIND THEME TOKENS
 ========================================= */
 
 @theme inline {
---color-fg: var(--fg);
---color-muted: var(--muted);
---color-faint: var(--faint);
---color-surface: var(--surface);
---color-panel: var(--panel);
---color-hairline: var(--hairline);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-hairline: var(--hairline);
 
---color-primary: var(--primary);
---color-primary-border: var(--primary-border);
---color-danger: var(--danger);
+  --color-primary: var(--primary);
+  --color-primary-border: var(--primary-border);
+  --color-danger: var(--danger);
 
---color-accent: var(--primary);
+  --color-accent: var(--primary);
 
---font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
---ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =========================================
@@ -36,98 +36,98 @@ ROOT — FIGMA COLORS
 ========================================= */
 
 :root {
-/* -----------------------------------------
-Brand / Primary
------------------------------------------ */
+  /* -----------------------------------------
+  Brand / Primary
+  ----------------------------------------- */
 
---primary: #0aa852;
---primary-border: #01c45a;
---danger: #e31b1b;
+  --primary: #0aa852;
+  --primary-border: #01c45a;
+  --danger: #e31b1b;
 
---accent-from: #0aa852;
---accent-to: #01c45a;
+  --accent-from: #0aa852;
+  --accent-to: #01c45a;
 
---on-accent: #ffffff;
+  --on-accent: #ffffff;
 
-/* -----------------------------------------
-Backgrounds
------------------------------------------ */
+  /* -----------------------------------------
+  Backgrounds
+  ----------------------------------------- */
 
---bg: #d4efde;
+  --bg: #d4efde;
 
---hero-from: #d4efde;
---hero-to: #e8f3e8;
+  --hero-from: #d4efde;
+  --hero-to: #e8f3e8;
 
---surface: #fbfbfb;
---panel: #fbfbfb;
+  --surface: #fbfbfb;
+  --panel: #fbfbfb;
 
---badge-bg: #dcffec;
---chart-bg: #edf8f0;
---stock-row-bg: rgba(237, 248, 240, 0.69);
---news-bg: #f1f9f4;
---footer-bg: #f4fff8;
+  --badge-bg: #dcffec;
+  --chart-bg: #edf8f0;
+  --stock-row-bg: rgba(237, 248, 240, 0.69);
+  --news-bg: #f1f9f4;
+  --footer-bg: #f4fff8;
 
---progress-track: #727272;
+  --progress-track: #727272;
 
---nav-from: #edfaf2;
---nav-to: #ffffff;
+  --nav-from: #edfaf2;
+  --nav-to: #ffffff;
 
-/* -----------------------------------------
-Text
------------------------------------------ */
+  /* -----------------------------------------
+  Text
+  ----------------------------------------- */
 
---fg: #000000;
---heading: #000000;
---text: #474747;
+  --fg: #000000;
+  --heading: #000000;
+  --text: #474747;
 
---muted: #656565;
---faint: #686868;
+  --muted: #656565;
+  --faint: #686868;
 
---secondary-text: #535353;
---meta-text: #585858;
---secondary-text-dark: #666666;
+  --secondary-text: #535353;
+  --meta-text: #585858;
+  --secondary-text-dark: #666666;
 
---stock-price: #393838;
---market-closed: #5a5a5a;
+  --stock-price: #393838;
+  --market-closed: #5a5a5a;
 
---white: #ffffff;
---black: #000000;
+  --white: #ffffff;
+  --black: #000000;
 
-/* -----------------------------------------
-Borders / Dividers
------------------------------------------ */
+  /* -----------------------------------------
+  Borders / Dividers
+  ----------------------------------------- */
 
---hairline: #d5d5d5;
+  --hairline: #d5d5d5;
 
---border: #d5d5d5;
---border-light: #ececec;
---border-cta: #bbbbbb;
+  --border: #d5d5d5;
+  --border-light: #ececec;
+  --border-cta: #bbbbbb;
 
-/* -----------------------------------------
-Shadows
------------------------------------------ */
+  /* -----------------------------------------
+  Shadows
+  ----------------------------------------- */
 
---shadow-sm:
-0 1px 2px rgb(0 0 0 / 0.05),
-0 1px 1px rgb(0 0 0 / 0.03);
+  --shadow-sm:
+    0 1px 2px rgb(0 0 0 / 0.05),
+    0 1px 1px rgb(0 0 0 / 0.03);
 
---shadow:
-0 4px 12px -2px rgb(0 0 0 / 0.08),
-0 2px 6px -2px rgb(0 0 0 / 0.05);
+  --shadow:
+    0 4px 12px -2px rgb(0 0 0 / 0.08),
+    0 2px 6px -2px rgb(0 0 0 / 0.05);
 
---shadow-lg:
-0 24px 48px -12px rgb(0 0 0 / 0.14),
-0 8px 20px -8px rgb(0 0 0 / 0.08);
+  --shadow-lg:
+    0 24px 48px -12px rgb(0 0 0 / 0.14),
+    0 8px 20px -8px rgb(0 0 0 / 0.08);
 
---glow:
-0 0 0 1px rgb(10 168 82 / 0.08);
+  --glow:
+    0 0 0 1px rgb(10 168 82 / 0.08);
 
-/* -----------------------------------------
-Radius
------------------------------------------ */
+  /* -----------------------------------------
+  Radius
+  ----------------------------------------- */
 
---radius: 1rem;
---radius-lg: 1.5rem;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
 }
 
 /* =========================================
@@ -135,50 +135,48 @@ DARK MODE
 ========================================= */
 
 .dark {
-/* --bg: #0a0f0c; */
+  --fg: #f5f5f5;
+  --heading: #ffffff;
+  --text: #d5d5d5;
 
---fg: #f5f5f5;
---heading: #ffffff;
---text: #d5d5d5;
+  --muted: #a8a8a8;
+  --faint: #808080;
 
---muted: #a8a8a8;
---faint: #808080;
+  --surface: #111713;
+  --panel: #151d18;
 
---surface: #111713;
---panel: #151d18;
+  --hairline: #28332c;
+  --border: #28332c;
+  --border-light: #303a34;
+  --border-cta: #3c4740;
 
---hairline: #28332c;
---border: #28332c;
---border-light: #303a34;
---border-cta: #3c4740;
+  --hero-from: #102b1b;
+  --hero-to: #0d1912;
 
---hero-from: #102b1b;
---hero-to: #0d1912;
+  --badge-bg: #103b24;
+  --chart-bg: #112219;
+  --stock-row-bg: rgba(17, 34, 25, 0.69);
+  --news-bg: #121d16;
+  --footer-bg: #0d1912;
 
---badge-bg: #103b24;
---chart-bg: #112219;
---stock-row-bg: rgba(17, 34, 25, 0.69);
---news-bg: #121d16;
---footer-bg: #0d1912;
+  --nav-from: #102219;
+  --nav-to: #0d120f;
 
---nav-from: #102219;
---nav-to: #0d120f;
+  --stock-price: #eeeeee;
+  --market-closed: #aaaaaa;
 
---stock-price: #eeeeee;
---market-closed: #aaaaaa;
+  --shadow-sm:
+    0 1px 2px rgb(0 0 0 / 0.4);
 
---shadow-sm:
-0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow:
+    0 8px 24px -6px rgb(0 0 0 / 0.5);
 
---shadow:
-0 8px 24px -6px rgb(0 0 0 / 0.5);
+  --shadow-lg:
+    0 32px 64px -16px rgb(0 0 0 / 0.65),
+    0 12px 28px -12px rgb(0 0 0 / 0.5);
 
---shadow-lg:
-0 32px 64px -16px rgb(0 0 0 / 0.65),
-0 12px 28px -12px rgb(0 0 0 / 0.5);
-
---glow:
-0 0 0 1px rgb(10 168 82 / 0.15);
+  --glow:
+    0 0 0 1px rgb(10 168 82 / 0.15);
 }
 
 /* =========================================
@@ -187,29 +185,29 @@ GLOBAL
 
 * {
   border-color: var(--hairline);
-  }
+}
 
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-margin: 0;
-background: var(--bg);
-color: var(--fg);
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
 
--webkit-font-smoothing: antialiased;
-text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 
-font-feature-settings:
-"cv02",
-"cv03",
-"cv04",
-"cv11";
+  font-feature-settings:
+    "cv02",
+    "cv03",
+    "cv04",
+    "cv11";
 
-transition:
-background-color 0.3s ease,
-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* =========================================
@@ -220,37 +218,37 @@ h1,
 h2,
 h3,
 .display {
-letter-spacing: -0.02em;
-text-wrap: balance;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 h1,
 .display {
-letter-spacing: -0.035em;
-line-height: 1.02;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
 }
 
 .text-display {
-font-size: clamp(2.6rem, 6.5vw, 4.75rem);
-line-height: 1;
-letter-spacing: -0.04em;
-font-weight: 800;
-text-wrap: balance;
+  font-size: clamp(2.6rem, 6.5vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  text-wrap: balance;
 }
 
 .text-hero {
-font-size: clamp(2.2rem, 5.5vw, 3.75rem);
-line-height: 1.03;
-letter-spacing: -0.035em;
-font-weight: 800;
-text-wrap: balance;
+  font-size: clamp(2.2rem, 5.5vw, 3.75rem);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  text-wrap: balance;
 }
 
 .lead {
-font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-line-height: 1.6;
-color: var(--muted);
-text-wrap: pretty;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 
 /* =========================================
@@ -258,8 +256,8 @@ SELECTION
 ========================================= */
 
 ::selection {
-background: var(--primary);
-color: #ffffff;
+  background: var(--primary);
+  color: #ffffff;
 }
 
 /* =========================================
@@ -267,19 +265,19 @@ SCROLLBAR
 ========================================= */
 
 ::-webkit-scrollbar {
-width: 10px;
-height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-background: var(--panel);
-border-radius: 8px;
-border: 2px solid transparent;
-background-clip: padding-box;
+  background: var(--panel);
+  border-radius: 8px;
+  border: 0.5px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-background: var(--hairline);
+  background: var(--hairline);
 }
 
 /* =========================================
@@ -287,9 +285,9 @@ FOCUS
 ========================================= */
 
 :focus-visible {
-outline: 2px solid var(--primary);
-outline-offset: 2px;
-border-radius: 6px;
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 /* =========================================
@@ -297,27 +295,27 @@ BRAND GRADIENT
 ========================================= */
 
 .gradient-text {
-background: linear-gradient(
-115deg,
-var(--accent-from),
-var(--accent-to)
-);
+  background: linear-gradient(
+    115deg,
+    var(--accent-from),
+    var(--accent-to)
+  );
 
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .gradient-bg {
-background: linear-gradient(
-115deg,
-var(--accent-from),
-var(--accent-to)
-);
+  background: linear-gradient(
+    115deg,
+    var(--accent-from),
+    var(--accent-to)
+  );
 }
 
 .on-accent {
-color: var(--on-accent);
+  color: var(--on-accent);
 }
 
 /* =========================================
@@ -325,11 +323,11 @@ HERO GRADIENT
 ========================================= */
 
 .hero-bg {
-background: linear-gradient(
-180deg,
-var(--hero-from) 0%,
-var(--hero-to) 100%
-);
+  background: linear-gradient(
+    180deg,
+    var(--hero-from) 0%,
+    var(--hero-to) 100%
+  );
 }
 
 /* =========================================
@@ -337,11 +335,11 @@ NAVIGATION
 ========================================= */
 
 .nav-bg {
-background: linear-gradient(
-180deg,
-var(--nav-from) 0%,
-var(--nav-to) 100%
-);
+  background: linear-gradient(
+    180deg,
+    var(--nav-from) 0%,
+    var(--nav-to) 100%
+  );
 }
 
 /* =========================================
@@ -349,35 +347,35 @@ BACKGROUND UTILITIES
 ========================================= */
 
 .bg-app {
-background: var(--bg);
+  background: var(--bg);
 }
 
 .bg-surface {
-background: var(--surface);
+  background: var(--surface);
 }
 
 .bg-panel {
-background: var(--panel);
+  background: var(--panel);
 }
 
 .bg-badge {
-background: var(--badge-bg);
+  background: var(--badge-bg);
 }
 
 .bg-chart {
-background: var(--chart-bg);
+  background: var(--chart-bg);
 }
 
 .bg-stock-row {
-background: var(--stock-row-bg);
+  background: var(--stock-row-bg);
 }
 
 .bg-news {
-background: var(--news-bg);
+  background: var(--news-bg);
 }
 
 .bg-footer {
-background: var(--footer-bg);
+  background: var(--footer-bg);
 }
 
 /* =========================================
@@ -385,39 +383,39 @@ TEXT UTILITIES
 ========================================= */
 
 .text-primary {
-color: var(--primary);
+  color: var(--primary);
 }
 
 .text-danger {
-color: var(--danger);
+  color: var(--danger);
 }
 
 .text-heading {
-color: var(--heading);
+  color: var(--heading);
 }
 
 .text-body {
-color: var(--text);
+  color: var(--text);
 }
 
 .text-muted {
-color: var(--muted);
+  color: var(--muted);
 }
 
 .text-secondary {
-color: var(--secondary-text);
+  color: var(--secondary-text);
 }
 
 .text-meta {
-color: var(--meta-text);
+  color: var(--meta-text);
 }
 
 .text-stock-price {
-color: var(--stock-price);
+  color: var(--stock-price);
 }
 
 .text-market-closed {
-color: var(--market-closed);
+  color: var(--market-closed);
 }
 
 /* =========================================
@@ -425,19 +423,19 @@ BORDERS
 ========================================= */
 
 .border-brand {
-border-color: var(--primary-border);
+  border-color: var(--primary-border);
 }
 
 .border-card {
-border-color: var(--border);
+  border-color: var(--border);
 }
 
 .border-badge {
-border-color: var(--border-light);
+  border-color: var(--border-light);
 }
 
 .border-cta {
-border-color: var(--border-cta);
+  border-color: var(--border-cta);
 }
 
 /* =========================================
@@ -445,13 +443,13 @@ ACCENT GLOW
 ========================================= */
 
 .accent-glow {
-box-shadow:
-0 8px 32px -8px
-color-mix(
-in oklab,
-var(--primary) 55%,
-transparent
-);
+  box-shadow:
+    0 8px 32px -8px
+    color-mix(
+      in oklab,
+      var(--primary) 55%,
+      transparent
+    );
 }
 
 /* =========================================
@@ -459,16 +457,16 @@ GLASS
 ========================================= */
 
 .glass {
-background: color-mix(
-in oklab,
-var(--bg) 72%,
-transparent
-);
+  background: color-mix(
+    in oklab,
+    var(--bg) 72%,
+    transparent
+  );
 
-backdrop-filter: blur(14px) saturate(1.4);
--webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
 
-border: 1px solid var(--hairline);
+  border: 0.5px solid var(--hairline);
 }
 
 /* =========================================
@@ -476,29 +474,30 @@ CARD
 ========================================= */
 
 .card {
-border-radius: var(--radius-lg);
-border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
 
-background: var(--surface);
+  border: 0.5px solid var(--hairline);
 
-box-shadow: var(--shadow-sm);
+  background: var(--surface);
 
-transition:
-transform 0.4s var(--ease-out-expo),
-box-shadow 0.4s var(--ease-out-expo),
-border-color 0.4s var(--ease-out-expo);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo),
+    border-color 0.4s var(--ease-out-expo);
 }
 
 .card:hover {
-transform: translateY(-4px);
+  transform: translateY(-4px);
 
-box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg);
 
-border-color: color-mix(
-in oklab,
-var(--primary) 40%,
-var(--hairline)
-);
+  border-color: color-mix(
+    in oklab,
+    var(--primary) 40%,
+    var(--hairline)
+  );
 }
 
 /* =========================================
@@ -506,41 +505,43 @@ GRADIENT BORDER
 ========================================= */
 
 .gradient-border {
-position: relative;
+  position: relative;
 }
 
 .gradient-border::after {
-content: "";
+  content: "";
 
-position: absolute;
-inset: 0;
+  position: absolute;
+  inset: 0;
 
-border-radius: inherit;
-padding: 1px;
+  border-radius: inherit;
 
-background:
-linear-gradient(
-140deg,
-color-mix(
-in oklab,
-var(--primary) 60%,
-transparent
-),
-transparent 45%
-);
+  /* 0.5px gradient border */
+  padding: 0.5px;
 
--webkit-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
+  background:
+    linear-gradient(
+      140deg,
+      color-mix(
+        in oklab,
+        var(--primary) 60%,
+        transparent
+      ),
+      transparent 45%
+    );
 
-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
 
--webkit-mask-composite: xor;
-mask-composite: exclude;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
 
-pointer-events: none;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
 }
 
 /* =========================================
@@ -548,32 +549,32 @@ GRID BACKGROUND
 ========================================= */
 
 .grid-bg {
-background-image:
-linear-gradient(
-var(--hairline) 1px,
-transparent 1px
-),
-linear-gradient(
-90deg,
-var(--hairline) 1px,
-transparent 1px
-);
+  background-image:
+    linear-gradient(
+      var(--hairline) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--hairline) 1px,
+      transparent 1px
+    );
 
-background-size: 56px 56px;
+  background-size: 56px 56px;
 
--webkit-mask-image:
-radial-gradient(
-ellipse 70% 60% at 50% 0%,
-#000 30%,
-transparent 75%
-);
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 70% 60% at 50% 0%,
+      #000 30%,
+      transparent 75%
+    );
 
-mask-image:
-radial-gradient(
-ellipse 70% 60% at 50% 0%,
-#000 30%,
-transparent 75%
-);
+  mask-image:
+    radial-gradient(
+      ellipse 70% 60% at 50% 0%,
+      #000 30%,
+      transparent 75%
+    );
 }
 
 /* =========================================
@@ -581,27 +582,27 @@ DOT BACKGROUND
 ========================================= */
 
 .dot-bg {
-background-image:
-radial-gradient(
-var(--hairline) 1px,
-transparent 1px
-);
+  background-image:
+    radial-gradient(
+      var(--hairline) 1px,
+      transparent 1px
+    );
 
-background-size: 22px 22px;
+  background-size: 22px 22px;
 
--webkit-mask-image:
-radial-gradient(
-ellipse 60% 50% at 50% 40%,
-#000 20%,
-transparent 70%
-);
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 60% 50% at 50% 40%,
+      #000 20%,
+      transparent 70%
+    );
 
-mask-image:
-radial-gradient(
-ellipse 60% 50% at 50% 40%,
-#000 20%,
-transparent 70%
-);
+  mask-image:
+    radial-gradient(
+      ellipse 60% 50% at 50% 40%,
+      #000 20%,
+      transparent 70%
+    );
 }
 
 /* =========================================
@@ -609,15 +610,15 @@ PROGRESS BAR
 ========================================= */
 
 .progress-track {
-background: var(--progress-track);
+  background: var(--progress-track);
 }
 
 .progress-positive {
-background: var(--primary);
+  background: var(--primary);
 }
 
 .progress-negative {
-background: var(--danger);
+  background: var(--danger);
 }
 
 /* =========================================
@@ -625,13 +626,13 @@ LOADING
 ========================================= */
 
 @keyframes loadbar {
-0% {
-transform: translateX(-120%);
-}
+  0% {
+    transform: translateX(-120%);
+  }
 
-100% {
-transform: translateX(340%);
-}
+  100% {
+    transform: translateX(340%);
+  }
 }
 
 /* =========================================
@@ -639,87 +640,87 @@ FLOATING / AMBIENT MOTION
 ========================================= */
 
 @keyframes floaty {
-0%,
-100% {
-transform: translateY(0);
-}
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-50% {
-transform: translateY(-18px);
-}
+  50% {
+    transform: translateY(-18px);
+  }
 }
 
 @keyframes drift {
-0%,
-100% {
-transform: translate3d(0, 0, 0) scale(1);
-}
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 
-33% {
-transform: translate3d(4%, -3%, 0) scale(1.06);
-}
+  33% {
+    transform: translate3d(4%, -3%, 0) scale(1.06);
+  }
 
-66% {
-transform: translate3d(-3%, 3%, 0) scale(0.96);
-}
+  66% {
+    transform: translate3d(-3%, 3%, 0) scale(0.96);
+  }
 }
 
 @keyframes spin-slow {
-to {
-transform: rotate(360deg);
-}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes gradient-pan {
-0%,
-100% {
-background-position: 0% 50%;
-}
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
 
-50% {
-background-position: 100% 50%;
-}
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes marquee-x {
-from {
-transform: translateX(0);
-}
+  from {
+    transform: translateX(0);
+  }
 
-to {
-transform: translateX(-50%);
-}
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes shimmer-sweep {
-0% {
-transform: translateX(-120%) skewX(-16deg);
-}
+  0% {
+    transform: translateX(-120%) skewX(-16deg);
+  }
 
-60%,
-100% {
-transform: translateX(320%) skewX(-16deg);
-}
+  60%,
+  100% {
+    transform: translateX(320%) skewX(-16deg);
+  }
 }
 
 .animate-floaty {
-animation: floaty 6s ease-in-out infinite;
+  animation: floaty 6s ease-in-out infinite;
 }
 
 .animate-floaty-slow {
-animation: floaty 9s ease-in-out infinite;
+  animation: floaty 9s ease-in-out infinite;
 }
 
 .animate-drift {
-animation: drift 22s ease-in-out infinite;
+  animation: drift 22s ease-in-out infinite;
 }
 
 .animate-drift-slow {
-animation: drift 30s ease-in-out infinite;
+  animation: drift 30s ease-in-out infinite;
 }
 
 .animate-spin-slow {
-animation: spin-slow 30s linear infinite;
+  animation: spin-slow 30s linear infinite;
 }
 
 /* =========================================
@@ -727,22 +728,22 @@ ANIMATED GRADIENT
 ========================================= */
 
 .gradient-text-animated {
-background:
-linear-gradient(
-115deg,
-var(--accent-from),
-var(--accent-to),
-var(--accent-from)
-);
+  background:
+    linear-gradient(
+      115deg,
+      var(--accent-from),
+      var(--accent-to),
+      var(--accent-from)
+    );
 
-background-size: 200% 200%;
+  background-size: 200% 200%;
 
--webkit-background-clip: text;
-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
 
-color: transparent;
+  color: transparent;
 
-animation: gradient-pan 6s ease infinite;
+  animation: gradient-pan 6s ease infinite;
 }
 
 /* =========================================
@@ -750,13 +751,13 @@ MARQUEE
 ========================================= */
 
 .marquee-track {
-display: flex;
-width: max-content;
-animation: marquee-x 40s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: marquee-x 40s linear infinite;
 }
 
 .marquee-track:hover {
-animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 /* =========================================
@@ -764,39 +765,39 @@ DRAW ANIMATION
 ========================================= */
 
 @keyframes draw {
-to {
-stroke-dashoffset: 0;
-}
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .animate-draw {
-stroke-dasharray: 2000;
-stroke-dashoffset: 2000;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
 
-animation:
-draw 1.8s
-var(--ease-out-expo)
-forwards;
+  animation:
+    draw 1.8s
+    var(--ease-out-expo)
+    forwards;
 }
 
 .marquee-mask {
--webkit-mask-image:
-linear-gradient(
-90deg,
-transparent,
-#000 8%,
-#000 92%,
-transparent
-);
+  -webkit-mask-image:
+    linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
 
-mask-image:
-linear-gradient(
-90deg,
-transparent,
-#000 8%,
-#000 92%,
-transparent
-);
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
 }
 
 /* =========================================
@@ -804,36 +805,36 @@ SHIMMER CTA
 ========================================= */
 
 .shimmer {
-position: relative;
-overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .shimmer::after {
-content: "";
+  content: "";
 
-position: absolute;
+  position: absolute;
 
-top: 0;
-bottom: 0;
-left: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
 
-width: 40%;
+  width: 40%;
 
-background:
-linear-gradient(
-90deg,
-transparent,
-rgb(255 255 255 / 0.45),
-transparent
-);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.45),
+      transparent
+    );
 
-animation:
-shimmer-sweep
-4.5s
-var(--ease-out-expo)
-infinite;
+  animation:
+    shimmer-sweep
+    4.5s
+    var(--ease-out-expo)
+    infinite;
 
-pointer-events: none;
+  pointer-events: none;
 }
 
 /* =========================================
@@ -841,35 +842,35 @@ SECTION ENTRANCE
 ========================================= */
 
 @keyframes rise {
-from {
-opacity: 0;
-transform: translateY(16px);
-}
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 
-to {
-opacity: 1;
-transform: none;
-}
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 main > section {
-animation:
-rise
-0.7s
-var(--ease-out-expo)
-both;
+  animation:
+    rise
+    0.7s
+    var(--ease-out-expo)
+    both;
 }
 
 main > section:nth-of-type(2) {
-animation-delay: 0.06s;
+  animation-delay: 0.06s;
 }
 
 main > section:nth-of-type(3) {
-animation-delay: 0.12s;
+  animation-delay: 0.12s;
 }
 
 main > section:nth-of-type(4) {
-animation-delay: 0.16s;
+  animation-delay: 0.16s;
 }
 
 /* =========================================
@@ -877,15 +878,15 @@ REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-*,
-::before,
-::after {
-animation: none !important;
-transition-duration: 0.01ms !important;
-scroll-behavior: auto !important;
-}
+  *,
+  ::before,
+  ::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 
-.shimmer::after {
-display: none;
-}
+  .shimmer::after {
+    display: none;
+  }
 }

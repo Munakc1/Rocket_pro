@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -13,7 +12,6 @@ import {
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
-
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -33,9 +31,7 @@ export default function ForgotPasswordPage() {
       return;
     }
 
-    if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)
-    ) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
       setError("Please enter a valid email address.");
       return;
     }
@@ -43,42 +39,66 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      if (!apiUrl) {
+        throw new Error(
+          "NEXT_PUBLIC_API_URL is not configured. Please check frontend/.env.local and restart the frontend server."
+        );
+      }
+
+      const response = await fetch(
+        `${apiUrl}/api/auth/forgot-password`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: cleanEmail,
+          }),
+        }
+      );
+
       /*
-       * -----------------------------------------------
-       * REAL BACKEND API
-       * -----------------------------------------------
+       * IMPORTANT:
+       * Do not immediately call response.json().
        *
-       * const response = await fetch(
-       *   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/forgot-password`,
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     body: JSON.stringify({
-       *       email: cleanEmail,
-       *     }),
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (!response.ok) {
-       *   throw new Error(
-       *     data.message ||
-       *       "Unable to process your request."
-       *   );
-       * }
+       * If the URL is wrong, Next.js may return an HTML
+       * page beginning with <!DOCTYPE html>.
        */
 
-      // Temporary frontend testing
-      await new Promise((resolve) =>
-        setTimeout(resolve, 800)
-      );
+      const contentType =
+        response.headers.get("content-type");
+
+      if (!contentType?.includes("application/json")) {
+        const text = await response.text();
+
+        console.error(
+          "Non-JSON response from backend:",
+          text
+        );
+
+        throw new Error(
+          `Server returned an unexpected response (${response.status}). Check that the backend is running at ${apiUrl}.`
+        );
+      }
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message ||
+            data.error ||
+            "Unable to process your request."
+        );
+      }
 
       setEmail(cleanEmail);
       setSubmitted(true);
     } catch (err) {
+      console.error("Forgot password error:", err);
+
       setError(
         err instanceof Error
           ? err.message
@@ -92,7 +112,6 @@ export default function ForgotPasswordPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#d4efde] px-4 py-10">
       <div className="w-full max-w-md">
-
         {/* Logo */}
         <div className="mb-8 text-center">
           <Link
@@ -109,7 +128,6 @@ export default function ForgotPasswordPage() {
 
         {/* Card */}
         <div className="rounded-2xl border border-[#d5d5d5] bg-[#fbfbfb] p-7 shadow-sm sm:p-8">
-
           {!submitted ? (
             <>
               {/* Header */}
@@ -215,7 +233,6 @@ export default function ForgotPasswordPage() {
           ) : (
             /* Success */
             <div className="py-4 text-center">
-
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#dcffec]">
                 <CheckCircle2 className="h-7 w-7 text-[#0aa852]" />
               </div>
@@ -257,4 +274,3 @@ export default function ForgotPasswordPage() {
     </main>
   );
 }
-

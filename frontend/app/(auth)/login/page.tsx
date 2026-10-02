@@ -118,41 +118,33 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      /*
-       * -----------------------------------------------
-       * REAL BACKEND LOGIN
-       * -----------------------------------------------
-       *
-       * Replace the temporary section below with:
-       *
-       * const response = await fetch(
-       *   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     credentials: "include",
-       *     body: JSON.stringify({
-       *       email: formData.email.trim().toLowerCase(),
-       *       password: formData.password,
-       *     }),
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (!response.ok) {
-       *   throw new Error(
-       *     data.message || "Invalid email or password."
-       *   );
-       * }
-       *
-       * // Login successful
-       * setSuccess("Logged in successfully!");
-       *
-       * router.push("/dashboard");
-       */
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: formData.email.trim().toLowerCase(),
+            password: formData.password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Invalid email or password."
+        );
+      }
+
+      // Login successful
+      setSuccess("Logged in successfully!");
+
+      router.push("/dashboard");
 
       // Temporary frontend testing
       await new Promise((resolve) =>
@@ -193,14 +185,13 @@ export default function LoginPage() {
       field === "email"
         ? errors.email
         : field === "password"
-        ? errors.password
-        : false;
+          ? errors.password
+          : false;
 
-    return `${inputClass} ${
-      hasError
+    return `${inputClass} ${hasError
         ? "border-[#e31b1b] focus:border-[#e31b1b] focus:ring-[#e31b1b]/10"
         : "border-[#d4efde] focus:border-[#01c45a] focus:ring-[#01c45a]/10"
-    } ${extra}`;
+      } ${extra}`;
   };
 
   return (

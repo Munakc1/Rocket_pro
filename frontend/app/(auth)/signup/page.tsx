@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -79,7 +78,8 @@ export default function RegisterPage() {
     if (!fullName) {
       newErrors.fullName = "Full name is required.";
     } else if (fullName.length < 2) {
-      newErrors.fullName = "Full name must be at least 2 characters.";
+      newErrors.fullName =
+        "Full name must be at least 2 characters.";
     } else if (!/^[a-zA-ZÀ-ÿ\s.'-]+$/.test(fullName)) {
       newErrors.fullName = "Please enter a valid name.";
     }
@@ -87,9 +87,7 @@ export default function RegisterPage() {
     // Email
     if (!email) {
       newErrors.email = "Email address is required.";
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "Please enter a valid email address.";
     }
 
@@ -133,7 +131,7 @@ export default function RegisterPage() {
   };
 
   // --------------------------------------------------
-  // Submit
+  // Submit registration
   // --------------------------------------------------
 
   const handleSubmit = async (
@@ -155,40 +153,67 @@ export default function RegisterPage() {
     setIsSubmitting(true);
 
     try {
-      /*
-       * BACKEND CONNECTION WILL GO HERE
-       *
-       * Example:
-       *
-       * const response = await fetch(
-       *   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     body: JSON.stringify({
-       *       fullName: formData.fullName.trim(),
-       *       email: formData.email.trim().toLowerCase(),
-       *       phone: formData.phone.trim(),
-       *       password: formData.password,
-       *     }),
-       *   }
-       * );
-       *
-       * const data = await response.json();
-       *
-       * if (!response.ok) {
-       *   throw new Error(data.message || "Registration failed.");
-       * }
-       */
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-      // Temporary success for frontend testing.
-      await new Promise((resolve) =>
-        setTimeout(resolve, 800)
+      if (!apiUrl) {
+        throw new Error(
+          "NEXT_PUBLIC_API_URL is not configured. Please check frontend/.env.local and restart the frontend server."
+        );
+      }
+
+      const response = await fetch(
+        `${apiUrl}/api/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: formData.fullName.trim(),
+            email: formData.email.trim().toLowerCase(),
+            phone: formData.phone.trim(),
+            password: formData.password,
+          }),
+        }
       );
 
-      setSuccess("Account created successfully!");
+      const contentType =
+        response.headers.get("content-type");
+
+      if (!contentType?.includes("application/json")) {
+        const text = await response.text();
+
+        console.error(
+          "Server returned non-JSON response:",
+          text
+        );
+
+        throw new Error(
+          `Server returned an unexpected response (${response.status}).`
+        );
+      }
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message ||
+            data.error ||
+            "Registration failed."
+        );
+      }
+
+      // Store JWT if backend returns it
+      if (data.token) {
+        localStorage.setItem(
+          "rocket_pro_token",
+          data.token
+        );
+      }
+
+      setSuccess(
+        "Account created successfully!"
+      );
 
       setFormData({
         fullName: "",
@@ -198,6 +223,11 @@ export default function RegisterPage() {
         confirmPassword: "",
       });
     } catch (error) {
+      console.error(
+        "Registration error:",
+        error
+      );
+
       setServerError(
         error instanceof Error
           ? error.message
@@ -274,11 +304,12 @@ export default function RegisterPage() {
         {success && (
           <div className="mb-5 flex items-center gap-2 rounded-xl border border-[#01c45a]/20 bg-[#dcffec] px-4 py-3 text-sm font-medium text-[#0aa852]">
             <CheckCircle2 size={18} />
+
             <span>{success}</span>
           </div>
         )}
 
-        {/* Form */}
+        {/* Registration Form */}
         <form
           onSubmit={handleSubmit}
           className="space-y-5"
@@ -407,7 +438,11 @@ export default function RegisterPage() {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
@@ -539,6 +574,7 @@ export default function RegisterPage() {
         {/* Login */}
         <p className="mt-7 text-center text-sm text-[#64748b]">
           Already have an account?{" "}
+
           <Link
             href="/login"
             className="font-semibold text-[#0aa852] transition hover:text-[#078b44] hover:underline"
@@ -556,4 +592,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-
