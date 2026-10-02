@@ -6,7 +6,7 @@ Based on Figma color specification
 ========================================= */
 
 /* Class-based dark mode */
-@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 /* =========================================
 TAILWIND THEME TOKENS
