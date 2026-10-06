@@ -18,7 +18,9 @@ function MoverArrow({ positive }: { positive: boolean }) {
   return (
     <svg
       viewBox="0 0 10 10"
-      className={`h-2.5 w-2.5 shrink-0 ${positive ? "" : "-scale-y-100"}`}
+      className={`h-2.5 w-2.5 shrink-0 ${
+        positive ? "" : "-scale-y-100"
+      }`}
     >
       <path
         d="M1.5 8.5L8.5 1.5M8.5 1.5H3M8.5 1.5V7"
@@ -119,7 +121,9 @@ export default function NepseIndexCard() {
 
                   <p
                     className={`font-['Space_Grotesk'] text-xs font-medium ${
-                      m.positive ? "text-[#0aa852]" : "text-[#e31b1b]"
+                      m.positive
+                        ? "text-[#0aa852]"
+                        : "text-[#e31b1b]"
                     }`}
                   >
                     {m.change}
