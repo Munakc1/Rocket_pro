@@ -66,7 +66,7 @@ function IndexChart() {
 export default function NepseIndexCard() {
   return (
     <div className="flex h-full flex-col items-start rounded-[30px] bg-[#fbfbfb] px-6 pb-9 pt-[30px]">
-      <div className="flex w-full flex-col gap-[31px]">
+      <div className="flex w-full flex-col gap-7.75">
         <div className="flex w-full flex-col gap-[17px]">
           <Link
             href="/nepse-data"
